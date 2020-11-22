@@ -1,11 +1,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  name: udagram-feed
   labels:
     app: udagram-feed
-  name: udagram-feed
 spec:
-  replicas: 2
   selector:
     matchLabels:
       app: udagram-feed
@@ -16,7 +15,7 @@ spec:
     spec:
       containers:
         - name: udagram-feed
-          image: asafalkhasov/udagram-feed
+          image: asafalkhasov/udagram-feed:4.1
           resources:
             limits:
               memory: "128Mi"
@@ -26,10 +25,3 @@ spec:
           envFrom:
             - secretRef:
                 name: dev-db-secret
-          volumeMounts:
-            - name: aws-secret
-              mountPath: /root/.aws
-      volumes:
-        - name: aws-secret
-          secret:
-            secretName: aws-secret
