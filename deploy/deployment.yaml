@@ -25,7 +25,7 @@ spec:
             - containerPort: 8080
           envFrom:
             - secretRef:
-                name: udagram-config
+                name: dev-db-secret
           volumeMounts:
             - name: aws-secret
               mountPath: /root/.aws
